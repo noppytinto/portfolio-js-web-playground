@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Playground</title>
+
+  <!-- CODEMIRRORS -->
+  <script src="libs/codemirror/lib/codemirror.js" defer></script>
+  <!-- codemirror styles -->
+  <link rel="stylesheet" href="libs/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="libs/codemirror/addon/lint/lint.css">
+<!--  <link rel="stylesheet" href="libs/codemirror/addon/hint/show-hint.css">-->
+  <link rel="stylesheet" href="libs/codemirror/addon/fold/foldgutter.css">
+
+  <!-- codemirror gutters -->
+  <script src="libs/codemirror/addon/fold/foldcode.js" defer></script>
+  <script src="libs/codemirror/addon/fold/foldgutter.js" defer></script>
+  <script src="libs/codemirror/addon/fold/brace-fold.js" defer></script>
+  <script src="libs/codemirror/addon/fold/indent-fold.js" defer></script>
+  <script src="libs/codemirror/addon/fold/markdown-fold.js" defer></script>
+  <script src="libs/codemirror/addon/fold/xml-fold.js" defer></script>
+  <script src="libs/codemirror/addon/fold/comment-fold.js" defer></script>
+
+
+  <!-- codemirror modes -->
+  <script src="libs/codemirror/mode/javascript/javascript.js" defer></script>
+  <script src="libs/codemirror/mode/xml/xml.js" defer></script>
+  <script src="libs/codemirror/mode/htmlmixed/htmlmixed.js" defer></script>
+  <script src="libs/codemirror/mode/css/css.js" defer></script>
+
+  <!-- codemirror linters -->
+  <script src="https://unpkg.com/jshint@2.13.2/dist/jshint.js" defer></script>
+  <script src="https://unpkg.com/jsonlint@1.6.3/web/jsonlint.js" defer></script>
+  <script src="https://unpkg.com/csslint@1.0.5/dist/csslint.js" defer></script>
+  <script src="https://unpkg.com/html5-lint@0.3.0/html5-lint.js" defer></script>
+  <script src="libs/codemirror/addon/lint/lint.js" defer></script>
+  <script src="libs/codemirror/addon/lint/css-lint.js" defer></script>
+  <script src="libs/codemirror/addon/lint/html-lint.js" defer></script>
+  <script src="libs/codemirror/addon/lint/javascript-lint.js" defer></script>
+
+  <!-- codemirror hints -->
+<!--  <script src="libs/codemirror/addon/hint/show-hint.js" defer></script>-->
+<!--  <script src="libs/codemirror/addon/hint/javascript-hint.js" defer></script>-->
+<!--  <script src="libs/codemirror/addon/hint/html-hint.js" defer></script>-->
+<!--  <script src="libs/codemirror/addon/hint/css-hint.js" defer></script>-->
+
+  <!-- codemirror folders -->
+  <script src="libs/codemirror/addon/fold/foldgutter.js" defer></script>
+  <script src="libs/codemirror/addon/fold/xml-fold.js" defer></script>
+
+  <!-- codemirror edits -->
+  <script src="libs/codemirror/addon/edit/matchtags.js" defer></script>
+  <script src="libs/codemirror/addon/edit/matchbrackets.js" defer></script>
+
+
+
+
+  <!-- codemirror addons -->
+
+
+
+
+  <!-- my style -->
+  <link rel="stylesheet" href="./style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<main class="main">
+  <section id="editor">
+    <label for="html">html:</label><br>
+
+<!--    <pre class="editor-container" >-->
+<!--      <code id="html" class="language-html" contenteditable="true" >-->
+
+<!--      </code>-->
+<!--    </pre>-->
+    <textarea name="html" id="html" cols="30" rows="10"></textarea>
+
+    <br>
+
+    <label for="css">css:</label><br>
+    <textarea name="css" id="css" cols="30" rows="10"></textarea>
+
+    <br>
+
+    <label for="js">js:</label><br>
+    <textarea name="js" id="js" cols="30" rows="10"></textarea>
+  </section>
+
+  <section id="output">
+    <iframe sandbox="allow-same-origin allow-scripts" title="output canvas" id="canvas" width="100%" height="100%"></iframe>
+  </section>
+
+<!--  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12051.071052506803!2d14.22796765!3d40.96466615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sit!4v1649342256847!5m2!1sen!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts"></iframe>-->
+
+</main>
+
+<br>
+</body>
+</html>

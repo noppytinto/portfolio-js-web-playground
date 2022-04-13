@@ -1,0 +1,61 @@
+:root {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*, ::after, ::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+
+  border-style: solid;
+  border-color: #c7c4c4;
+  border-width: 1px;
+}
+
+body {
+  height: 100vh;
+  padding: 1em;
+  border: none;
+}
+
+
+/************************************************+*/
+/************************************************+*/
+.main {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  gap: 1em;
+}
+
+.input {
+  flex-basis: 30%;
+
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  gap: 1em;
+}
+
+.input__editor {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.output {
+
+  background-color: #d2ffff;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.output__canvas {
+  background-color: #c5bdff;
+  height: 100%;
+
+}

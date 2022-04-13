@@ -1,0 +1,249 @@
+@use "variables" as v;
+
+
+//////////////////////////////////////
+// main
+//////////////////////////////////////
+.main {
+  height: 100%;
+
+  //
+  display: flex;
+  justify-content: space-between;
+  gap: .2em;
+
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .main {
+    flex-direction: column;
+  }
+}
+
+
+
+//////////////////////////////////////
+// input
+//////////////////////////////////////
+.input {
+  width: 40%;
+  overflow: hidden;
+  // resize: horizontal;
+
+  //
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+
+  //
+  border-style: solid;
+  border-radius: .2em;
+  border-width: 1px;
+  border-color: #c0c0c0;
+
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .input {
+    width: auto;
+    height: 40%;
+  }
+}
+
+
+.input__tabs {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 10;
+  background-color: #e2e2e2;
+
+  //
+  box-shadow: 0 0px 7px 0px rgba(99, 99, 99, 0.5);
+}
+
+.input__tab-button {
+  border-color: #1c87c9;
+  border-radius: 0;
+  border-width: 0;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #e3e3e3;
+  color: #8d8d8d;
+  padding: .5em 1.5em;
+
+  transition: background-color .2s, 
+              transform .1s;
+}
+
+.input__tab-button:hover {
+  cursor: pointer;
+}
+
+.input__tab-button:active {
+  transform: scale(0.9);
+}
+
+.input__tab-button--html--active {
+  font-weight: bold;
+  background-color: #ff9c83;
+}
+
+
+.input__tab-button--html {
+
+}
+
+.input__tab-button--css {
+
+}
+
+.input__tab-button--html:hover {
+  background-color: #ff9c83;
+  color: #6e4237;
+}
+
+.input__tab-button--css:hover {
+  background-color: #83c3ff;
+  color: #426585;
+}
+
+.input__tab-button--js:hover {
+  background-color: #fff783;
+  color: #77743e;
+}
+
+.input__tab-button--html--active {
+  background-color: #ff9c83;
+  color: #6e4237;
+  font-weight: bold;
+}
+
+.input__tab-button--css--active {
+  background-color: #83c3ff;
+  color: #426585;
+  font-weight: bold;
+}
+
+.input__tab-button--js--active {
+  background-color: #fff783;
+  color: #77743e;
+  font-weight: bold;
+}
+
+
+
+.input__section {
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  //
+  // display: flex;
+  // flex-direction: column;
+  // align-items: stretch;
+  // justify-content: stretch;
+
+
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .input__section  {
+
+
+  }
+}
+
+.editor {
+  width: 100%;
+}
+
+.CodeMirror {
+  height: 100%;
+  width: 100%;
+}
+
+.CodeMirror-sizer {
+  padding-top: 5px;
+}
+
+
+//////////////////////////////////////
+// output
+//////////////////////////////////////
+.output {
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  
+  overflow: clip;
+  //
+  border-style: solid;
+  border-radius: .2em;
+  border-width: 1px;
+  border-color: #727272;
+
+  //
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .output {
+
+  }
+}
+
+#output__canvas {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  border: none;
+}
+
+.drag-area-helper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  opacity: 0;
+  z-index: 10;
+}
+
+
+//////////////////////////////////////
+// resizer
+//////////////////////////////////////
+.resizer-container {
+  color: rgb(157, 157, 157);
+  width: 7px;
+
+  //
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.resizer {
+  width: 5px;
+  height: 100%;
+
+  //
+  // border-color: v.$color--resizer-handle;
+  // border-width: 1px;
+  // border-style: solid;
+  // border-radius: 1em;
+}
+
+.resizer-container:hover {
+  cursor: ew-resize;
+}
+
+

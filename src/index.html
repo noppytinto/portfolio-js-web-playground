@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Playground</title>
+
+  <!-- my assets -->
+
+</head>
+<body>
+
+<main class="main">
+  <section class="input">
+
+    <ul class="input__tabs">
+      <li class="input__tabs-item">
+        <button type="button" 
+                class="input__tab-button input__tab-button--html  input__tab-button--html--active">HTML</button>
+      </li>
+      <li class="input__tabs-item">
+        <button type="button" 
+                class="input__tab-button input__tab-button--css">CSS</button>
+      </li>
+      <li class="input__tabs-item">
+        <button type="button" 
+                class="input__tab-button input__tab-button--js">JAVASCRIPT</button>
+      </li>
+    </ul>
+
+
+    <div class="input__section input__section-html">
+      <textarea name="htmlcode"
+                id="editor-html"
+                class="editor hidden"></textarea>
+    </div>
+
+    <div class="input__section input__section-css hidden">
+      <textarea name="csscode"
+                id="editor-css"
+                class="editor hidden"></textarea>
+    </div>
+
+    <div class="input__section input__section-js hidden">
+      <textarea name="jscode"
+                id="editor-js"
+                class="editor hidden"></textarea>
+    </div>
+  </section>
+
+  <div class="resizer-container">
+    <span class="resizer resizer--vertical">&nbsp;</span>
+  </div>
+
+  <section class="output">
+    <iframe sandbox="allow-scripts"
+            title="output canvas"
+            id="output__canvas"
+            src="">page not found!</iframe>
+    <div class="drag-area-helper hidden"></div>
+  <div class="loading hidden"></div>
+
+  </section>
+
+</main>
+</body>
+</html>
