@@ -1,9 +1,9 @@
-
-// 
+//
 import * as codeEditor from './scripts/editor';
 import * as session from './scripts/session';
 import * as pageGenerator from './scripts/page-generator';
 import * as uiUtils from './scripts/ui-utils';
+import * as miscUtils from './scripts/misc-utils';
 import './styles/style.scss';
 
 
@@ -23,11 +23,12 @@ const editorHtmlView = document.querySelector('.input__section-html');
 const editorCssView = document.querySelector('.input__section-css');
 const editorJsView = document.querySelector('.input__section-js');
 
-let isHandlerDragging = false;
+
 
 /////////////////////////////////////////
 // declarations
 /////////////////////////////////////////
+let isHandlerDragging = false;
 const previousSessionData = session.restore();
 const pageData = {
     htmlCode: previousSessionData.htmlCode ?? '',
@@ -35,31 +36,29 @@ const pageData = {
     jsCode: previousSessionData.jsCode ?? '',
 }
 const [htmlEditor, cssEditor, jsEditor] = codeEditor.init();
+let mediaQuery = window.matchMedia("screen and (max-width: 750px)");
 
 
 
 /////////////////////////////////////////
 // main()
 /////////////////////////////////////////
-
-//
-restorePreviousViewState(pageData);
-
-//
-listenEditorsChanges(htmlEditor, cssEditor, jsEditor);
-
-//
 handleTabsClick();
-
-//
+checkMediaQuery(mediaQuery)
 handleResizer();
+
+miscUtils.authorizeApp(() => {
+    restorePreviousViewState(pageData);
+    listenEditorsChanges(htmlEditor, cssEditor, jsEditor);
+});
+
+
 
 
 
 /////////////////////////////////////////
 // functions
 /////////////////////////////////////////
-
 function restorePreviousViewState(pageData) {
     if (pageData.htmlCode !== '') {
         htmlEditor.setValue(pageData.htmlCode);
@@ -130,16 +129,31 @@ function handleTabsClick() {
     });
 }
 
-
-
 function handleResizer() {
     resizerVertical.addEventListener('mousedown', enableResize);
 
     document.addEventListener('mouseup', disableResize);
 
-    document.addEventListener('mousemove', resize);
+    mediaQuery.addEventListener('change', (ev) => {
+        checkMediaQuery(ev);
+    });
 }
 
+function checkMediaQuery(mq) {
+    if (mq.matches) { // If media query matches
+        isHandlerDragging = false;
+        inputSection.style.width = 'auto';
+        inputSection.style.height = '40%';
+        document.removeEventListener('mousemove', resizeHorizontally);
+        document.addEventListener('mousemove', resizeVertically);
+    } else {
+        isHandlerDragging = false;
+        inputSection.style.width = '40%';
+        inputSection.style.height = 'auto';
+        document.removeEventListener('mousemove', resizeVertically);
+        document.addEventListener('mousemove', resizeHorizontally);
+    }
+}
 
 function enableResize(ev) {
     ev.preventDefault();
@@ -153,14 +167,14 @@ function enableResize(ev) {
 
 }
 
-function resize(ev) {
+function resizeHorizontally(ev) {
 
     // Don't do anything if dragging flag is false
     if (!isHandlerDragging) {
         return false;
     }
 
-    console.log('DRAGGING');
+    console.log('DRAGGING HORIZONTALLY');
 
 
     // Get offset
@@ -173,6 +187,25 @@ function resize(ev) {
     // inputSection.style.flexGrow = 0;
 }
 
+function resizeVertically(ev) {
+
+    // Don't do anything if dragging flag is false
+    if (!isHandlerDragging) {
+        return false;
+    }
+
+    console.log('DRAGGING VERTICALLY');
+
+
+    // Get offset
+    let containerOffsetTop = wrapper.offsetTop;
+
+    // Get x-coordinate of pointer relative to container
+    let pointerRelativeYpos = ev.clientY - containerOffsetTop;
+
+    inputSection.style.height = pointerRelativeYpos + 'px';
+    // inputSection.style.flexGrow = 0;
+}
 
 function disableResize(ev) {
     console.log('resize disabled');

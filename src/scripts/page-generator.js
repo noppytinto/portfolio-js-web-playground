@@ -1,16 +1,12 @@
-
 import * as uiUtils from './ui-utils';
 import * as session from './session';
 import { clearMyTimeout } from './misc-utils';
-
-
 
 /////////////////////////////////////////
 // declarations
 /////////////////////////////////////////
 let timeout;
 const DEBOUNCE_DELAY = 2000;
-
 
 export function generatePage(pageData) {
     console.log('generating page...');
@@ -24,7 +20,6 @@ export function generatePage(pageData) {
        requestPage(pageData);
     }, DEBOUNCE_DELAY)
 }
-
 
 export function requestPage(pageData) {
     const request = buildRequest(pageData);
@@ -41,17 +36,21 @@ export function requestPage(pageData) {
         });
 }
 
-
-
 export function buildRequest(pageData) {
     const payload = buildPayload(pageData);
-    
-    const URL = 'http://localhost:3000/page/generate';
+
+    // TODO
+    const URL = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
+
+    //
+    // const URL = 'http://localhost:3000/page/generate';
+
     const request = new Request(URL, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: new Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
         }),
         credentials: 'include',
     });

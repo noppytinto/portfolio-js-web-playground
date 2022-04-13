@@ -11,7 +11,31 @@ export function hideLoadingSpinner() {
 }
 
 export function updateFrame(pageData) {
-    outputIframe.setAttribute('src', pageData.pageUrl);
+    // TODO
+    // const url = 'https://noppytinto-web-playground.herokuapp.com/page/request';
+
+    const url = pageData.pageUrl;
+    const request = new Request(url, {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+        }),
+        credentials: 'include',
+    });
+
+    fetch(request)
+        .then((res) => res.blob())
+        .then((data) => {
+            // store token
+            console.log('DATA', data);
+            const data_url = URL.createObjectURL(data);
+            console.log('data_url', data_url);
+            outputIframe.setAttribute('src', data_url);
+        })
+        .catch((err) => {
+            console.error('CANNOT REQUEST GENERATED PAGE:', err);
+        });
+
 }
 
 
