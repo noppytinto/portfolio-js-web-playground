@@ -47,7 +47,7 @@ export function buildRequest(pageData) {
     else if (configService.isDevelopmentMode()) {
         url = 'http://localhost:3000/page/generate';
     }
-    
+
     const request = new Request(url, {
         method: 'POST',
         body: JSON.stringify(payload),
