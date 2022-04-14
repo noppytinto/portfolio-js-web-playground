@@ -132,7 +132,8 @@
 }
 
 .input__section {
-  height: 100%;
+  height: auto;
+  width: auto;
 }
 
 .editor {
@@ -252,4 +253,11 @@
   .resizer:hover {
     cursor: ns-resize;
   }
+}
+
+.test {
+  overflow: auto;
+  background-color: #1c87c9;
+  height: 100%;
+  width: 100%;
 }
