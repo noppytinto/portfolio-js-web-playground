@@ -1,19 +1,8 @@
-import 'codemirror';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/addon/display/autorefresh';
-import 'codemirror/addon/fold/xml-fold';
-import 'codemirror/addon/edit/closetag';
-import 'codemirror/addon/edit/closebrackets';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/htmlmixed/htmlmixed';
-import 'codemirror/mode/css/css';
-import CodeMirror from 'codemirror';
-
 const htmlTextarea = document.querySelector('#editor-html');
 const cssTextarea = document.querySelector('#editor-css');
 const jsTextarea = document.querySelector('#editor-js');
 
-export function init() {
+export function init(CodeMirror) {
     const htmlConfig = {
         mode: "htmlmixed",
         htmlMode: true,

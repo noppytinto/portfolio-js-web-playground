@@ -1,4 +1,5 @@
-import * as uiUtils from './ui-utils';
+import * as configService from './services/config-service';
+import * as uiService from './services/ui-service';
 import * as session from './session';
 import { clearMyTimeout } from './misc-utils';
 
@@ -10,7 +11,7 @@ const DEBOUNCE_DELAY = 2000;
 
 export function generatePage(pageData) {
     console.log('generating page...');
-    uiUtils.showLoadingSpinner();
+    uiService.showLoadingSpinner();
 
     //
     clearMyTimeout(timeout);
@@ -22,13 +23,19 @@ export function generatePage(pageData) {
 }
 
 export function requestPage(pageData) {
+    console.log('PAGE DATA TO SEND', pageData);
     const request = buildRequest(pageData);
+
+    console.log('REQUEST', request);
+    console.log('HEADER', request.headers.get('Authorization'));
 
     fetch(request)
         .then((res) => res.json())
         .then((data) => {
-            uiUtils.updateFrame(data);
-            uiUtils.hideLoadingSpinner();
+
+            console.log('PAGE DATA FETCHED', data);
+            uiService.updateFrame(data);
+            uiService.hideLoadingSpinner();
             session.save(pageData);
         })
         .catch((err) => {
@@ -39,13 +46,17 @@ export function requestPage(pageData) {
 export function buildRequest(pageData) {
     const payload = buildPayload(pageData);
 
-    // TODO
-    const URL = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
+    let url;
+    if (configService.isProductionMode()) {
+        url = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
+    }
+    else if (configService.isDevelopmentMode()) {
+        url = 'http://localhost:3000/page/generate';
+    }
 
-    //
-    // const URL = 'http://localhost:3000/page/generate';
+    console.log('URL', url);
 
-    const request = new Request(URL, {
+    const request = new Request(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: new Headers({

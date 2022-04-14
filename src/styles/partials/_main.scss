@@ -1,6 +1,7 @@
 @use "variables" as v;
 
 
+
 //////////////////////////////////////
 // main
 //////////////////////////////////////
@@ -21,19 +22,13 @@
 }
 
 
+
 //////////////////////////////////////
 // input
 //////////////////////////////////////
 .input {
   width: 40%;
   overflow: hidden;
-  // resize: horizontal;
-  
-  //
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
   
   //
   border-style: solid;
@@ -41,6 +36,12 @@
   border-width: 1px;
   border-color: #c0c0c0;
   
+  
+  //
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 @media screen and (max-width: v.$breakpoint--default) {
@@ -50,16 +51,18 @@
   }
 }
 
-
 .input__tabs {
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  z-index: 10;
-  background-color: #e2e2e2;
+  //height: 10%;
   
   //
+  list-style: none;
+  z-index: 10;
+  background-color: #e2e2e2;
   box-shadow: 0 0px 7px 0px rgba(99, 99, 99, 0.5);
+  
+  //
+  display: flex;
+  justify-content: flex-start;
 }
 
 .input__tab-button {
@@ -87,15 +90,6 @@
 .input__tab-button--html--active {
   font-weight: bold;
   background-color: #ff9c83;
-}
-
-
-.input__tab-button--html {
-
-}
-
-.input__tab-button--css {
-
 }
 
 .input__tab-button--html:hover {
@@ -132,24 +126,13 @@
 }
 
 
-.input__section {
-  flex-grow: 1;
-  flex-shrink: 0;
-  
-  //
-  // display: flex;
-  // flex-direction: column;
-  // align-items: stretch;
-  // justify-content: stretch;
-  
-  
+
+.input__sections {
+  overflow: hidden;
 }
 
-@media screen and (max-width: v.$breakpoint--default) {
-  .input__section {
-  
-  
-  }
+.input__section {
+  height: 100%;
 }
 
 .editor {
@@ -164,6 +147,7 @@
 .CodeMirror-sizer {
   padding-top: 5px;
 }
+
 
 
 //////////////////////////////////////
@@ -215,6 +199,7 @@
 }
 
 
+
 //////////////////////////////////////
 // resizer
 //////////////////////////////////////
@@ -242,7 +227,6 @@
   }
 }
 
-
 .resizer {
   width: 7px;
   height: 10%;
@@ -255,19 +239,17 @@
   background-color: #c4e4ff;
 }
 
+.resizer:hover {
+  cursor: ew-resize;
+}
+
 @media screen and (max-width: v.$breakpoint--default) {
   .resizer {
     width: 10%;
     height: 7px;
   }
-}
-
-.resizer-container:hover {
-  cursor: ew-resize;
-}
-
-@media screen and (max-width: v.$breakpoint--default) {
-  .resizer-container:hover {
+  
+  .resizer:hover {
     cursor: ns-resize;
   }
 }
