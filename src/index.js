@@ -48,12 +48,12 @@ uiService.checkMediaQuery()
 uiService.handleTabsClick();
 uiService.handleResizer();
 
-// adminService.authorizeApp(() => {
-//     console.log('APP AUTHORIZED');
-//     uiService.restorePreviousViewState(pageData, {htmlEditor, cssEditor, jsEditor});
-//     uiService.listenEditorsChanges(pageData, {htmlEditor, cssEditor, jsEditor});
-// });
-//
+adminService.authorizeApp(() => {
+    console.log('APP AUTHORIZED');
+    uiService.restorePreviousViewState(pageData, {htmlEditor, cssEditor, jsEditor});
+    uiService.listenEditorsChanges(pageData, {htmlEditor, cssEditor, jsEditor});
+});
+
 
 
 /////////////////////////////////////////

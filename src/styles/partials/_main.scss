@@ -1,7 +1,6 @@
 @use "variables" as v;
 
 
-
 //////////////////////////////////////
 // main
 //////////////////////////////////////
@@ -40,8 +39,8 @@
   //
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  //justify-content: flex-start;
+  //align-items: stretch;
 }
 
 @media screen and (max-width: v.$breakpoint--default) {
@@ -51,6 +50,11 @@
   }
 }
 
+
+
+//////////////////////////////////////
+// input - tabs
+//////////////////////////////////////
 .input__tabs {
   //height: 10%;
   
@@ -127,22 +131,27 @@
 
 
 
-.input__sections {
-  overflow: hidden;
+//////////////////////////////////////
+// input - editors
+//////////////////////////////////////
+.input__editors-container {
+  flex-grow: 1;
+  overflow: auto;
+  
+  //
+  display: flex;
+  justify-content: flex-start;
 }
 
 .input__section {
-  height: auto;
-  width: auto;
+  flex-grow: 1;
 }
 
 .editor {
-  width: 100%;
 }
 
 .CodeMirror {
   height: 100%;
-  width: 100%;
 }
 
 .CodeMirror-sizer {

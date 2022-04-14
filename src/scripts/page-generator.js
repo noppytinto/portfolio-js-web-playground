@@ -23,17 +23,11 @@ export function generatePage(pageData) {
 }
 
 export function requestPage(pageData) {
-    console.log('PAGE DATA TO SEND', pageData);
     const request = buildRequest(pageData);
-
-    console.log('REQUEST', request);
-    console.log('HEADER', request.headers.get('Authorization'));
 
     fetch(request)
         .then((res) => res.json())
         .then((data) => {
-
-            console.log('PAGE DATA FETCHED', data);
             uiService.updateFrame(data);
             uiService.hideLoadingSpinner();
             session.save(pageData);
@@ -53,9 +47,7 @@ export function buildRequest(pageData) {
     else if (configService.isDevelopmentMode()) {
         url = 'http://localhost:3000/page/generate';
     }
-
-    console.log('URL', url);
-
+    
     const request = new Request(url, {
         method: 'POST',
         body: JSON.stringify(payload),

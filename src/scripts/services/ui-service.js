@@ -137,8 +137,6 @@ export function hideLoadingSpinner() {
 export function updateFrame(pageData) {
     const url = pageData.pageUrl;
 
-    console.log('REQUEST URL:', url);
-
     if (configService.isProductionMode()) {
         const request = new Request(url, {
             method: 'GET',
@@ -151,9 +149,7 @@ export function updateFrame(pageData) {
         fetch(request)
             .then((res) => res.blob())
             .then((data) => {
-                console.log('DATA', data);
                 const data_url = URL.createObjectURL(data);
-                console.log('data_url', data_url);
                 outputIframe.setAttribute('src', data_url);
             })
             .catch((err) => {
