@@ -26,7 +26,7 @@ export function requestPage(pageData) {
     const request = buildRequest(pageData);
 
     fetch(request)
-        .then((res) => res.json())
+        .then((res) => res.blob())
         .then((data) => {
             uiService.updateFrame(data);
             uiService.hideLoadingSpinner();
@@ -40,12 +40,9 @@ export function requestPage(pageData) {
 export function buildRequest(pageData) {
     const payload = buildPayload(pageData);
 
-    let url;
+    let url = 'http://localhost:3000/page/generate';
     if (configService.isProductionMode()) {
         url = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
-    }
-    else if (configService.isDevelopmentMode()) {
-        url = 'http://localhost:3000/page/generate';
     }
 
     const request = new Request(url, {

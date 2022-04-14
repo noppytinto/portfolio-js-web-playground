@@ -12,7 +12,7 @@ import * as codeEditor from './scripts/editor-service';
 const [htmlEditor, cssEditor, jsEditor] = codeEditor.init(CodeMirror);
 
 import * as configService from './scripts/services/config-service';
-configService.setAppMode('production');
+configService.setAppMode('development');
 
 import * as uiService from './scripts/services/ui-service';
 import * as session from './scripts/session';

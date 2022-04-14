@@ -135,29 +135,38 @@ export function hideLoadingSpinner() {
 }
 
 export function updateFrame(pageData) {
-    const url = pageData.pageUrl;
+    // const url = pageData.pageUrl;
+    console.log('PAGE DATA:', pageData);
 
-    if (configService.isProductionMode()) {
-        const request = new Request(url, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': `Bearer ${window.localStorage.getItem('token')}`
-            }),
-            credentials: 'include',
-        });
+    // outputIframe.contentWindow.document.innerHTML = pageData;
+    // outputIframe.contentWindow.document.srcDoc(pageData);
 
-        fetch(request)
-            .then((res) => res.blob())
-            .then((data) => {
-                const data_url = URL.createObjectURL(data);
-                outputIframe.setAttribute('src', data_url);
-            })
-            .catch((err) => {
-                console.error('CANNOT REQUEST GENERATED PAGE:', err);
-            });
-    } else if (configService.isDevelopmentMode()) {
-        outputIframe.setAttribute('src', url);
-    }
+    const data_url = URL.createObjectURL(pageData);
+    outputIframe.setAttribute('src', data_url);
+
+    // if (configService.isProductionMode()) {
+    //     const request = new Request(url, {
+    //         method: 'GET',
+    //         headers: new Headers({
+    //             'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+    //         }),
+    //         credentials: 'include',
+    //     });
+    //
+    //     fetch(request)
+    //         .then((res) => res.blob())
+    //         .then((data) => {
+    //             const data_url = URL.createObjectURL(data);
+    //             outputIframe.setAttribute('src', data_url);
+    //         })
+    //         .catch((err) => {
+    //             console.error('CANNOT REQUEST GENERATED PAGE:', err);
+    //         });
+    // } else if (configService.isDevelopmentMode()) {
+    //     // outputIframe.setAttribute('src', url);
+    //
+    //     outputIframe.contentWindow.document.write("<html><body>Hello world</body></html>");
+    // }
 }
 
 export function activateTab(tab, tabName) {
