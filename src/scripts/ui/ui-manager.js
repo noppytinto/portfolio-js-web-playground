@@ -4,7 +4,7 @@ const tabHtml = document.querySelector('.input__tab-button--html');
 const tabCss = document.querySelector('.input__tab-button--css');
 const tabJs = document.querySelector('.input__tab-button--js');
 const wrapper = document.querySelector('.main');
-const dragAreaHelper = document.querySelector('.drag-area-helper');
+const resizerHelper = document.querySelector('.resizer-helper');
 const inputSection = document.querySelector('.input');
 const resizerVertical = document.querySelector('.resizer--vertical');
 const editorHtmlView = document.querySelector('.input__section-html');
@@ -167,7 +167,7 @@ function enableResize(ev) {
     // If mousedown event is fired from .handler, toggle flag to true
     if (ev.target === resizerVertical) {
         console.log('resize enabled');
-        dragAreaHelper.classList.remove('hidden');
+        resizerHelper.classList.remove('hidden');
         isHandlerDragging = true;
     }
 
@@ -215,8 +215,8 @@ function resizeVertically(ev) {
 
 function disableResize(ev) {
     console.log('resize disabled');
-    dragAreaHelper.classList.remove('hidden');
-    dragAreaHelper.classList.add('hidden');
+    resizerHelper.classList.remove('hidden');
+    resizerHelper.classList.add('hidden');
 
     // Turn off dragging flag when user mouse is up
     isHandlerDragging = false;
