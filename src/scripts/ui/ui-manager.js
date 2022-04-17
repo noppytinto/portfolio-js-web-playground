@@ -12,6 +12,8 @@ const editorCssView = document.querySelector('.input__section-css');
 const editorJsView = document.querySelector('.input__section-js');
 const loadingSpinner = document.querySelector('.loading');
 const outputIframe = document.querySelector('#output__canvas');
+const inputMenuButton = document.querySelector('.input__menu-button');
+const inputMenuOptions = document.querySelector('.input__menu-options-container');
 
 let isHandlerDragging = false;
 let mediaQuery;
@@ -64,6 +66,8 @@ export function handleResizer() {
         checkMediaQuery(ev);
     });
 }
+
+
 
 export function checkMediaQuery() {
     mediaQuery = window.matchMedia("screen and (max-width: 750px)");
@@ -157,6 +161,13 @@ export function showElement(element) {
     element.classList.remove('hidden');
 }
 
+export function handleInputMenu() {
+    // TODO
+    inputMenuButton.addEventListener('click', (ev) => {
+        console.log('input menu clicked');
+        inputMenuOptions.classList.toggle('hidden');
+    })
+}
 
 //////////////////////////////////////////
 // PRIVATE FUNCTIONS

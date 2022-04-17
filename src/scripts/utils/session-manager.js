@@ -12,7 +12,7 @@ export function save(bundle) {
 export function destroy() {
     window.localStorage.removeItem('htmlCode');
     window.localStorage.removeItem('cssCode');
-    window.localStorage.removeItem('jsCode');
+    window.localStorage.removeItem('jsCode');    
 }
 
 export function restore() {
@@ -22,3 +22,4 @@ export function restore() {
     bundle.jsCode = localStorage.getItem('jsCode') ?? '';
     return bundle;
 }
+

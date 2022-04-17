@@ -14,20 +14,40 @@
 
 <main class="main">
   <section class="input">
-    <ul class="input__tabs">
-      <li class="input__tabs-item">
-        <button type="button"
-                class="input__tab-button input__tab-button--html  input__tab-button--html--active">HTML(body)</button>
-      </li>
-      <li class="input__tabs-item">
-        <button type="button"
-                class="input__tab-button input__tab-button--css">CSS</button>
-      </li>
-      <li class="input__tabs-item">
-        <button type="button"
-                class="input__tab-button input__tab-button--js">JAVASCRIPT</button>
-      </li>
-    </ul>
+    <div class="input__tabs-container">
+      <ul class="input__tabs">
+        <li class="input__tabs-item">
+          <button type="button"
+                  class="input__tab-button input__tab-button--html  input__tab-button--html--active">HTML(body)</button>
+        </li>
+        <li class="input__tabs-item">
+          <button type="button"
+                  class="input__tab-button input__tab-button--css">CSS</button>
+        </li>
+        <li class="input__tabs-item">
+          <button type="button"
+                  class="input__tab-button input__tab-button--js">JAVASCRIPT</button>
+        </li>
+      </ul>
+
+      <div class="input__menu">
+        <div class="input__menu-header">
+          <button class="input__menu-button">
+            &vellip;
+          </button>
+        </div>
+
+
+        <div class="input__menu-options-container hidden">
+          <ul class="input__menu-options-list">
+            <li class="input__menu-option-item">Reset editor</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
 
     <div class="input__editors-container">
 
