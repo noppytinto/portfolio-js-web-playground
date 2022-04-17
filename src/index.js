@@ -8,15 +8,15 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/css/css';
 import CodeMirror from 'codemirror';
-import * as codeEditor from './scripts/editor-service';
+import * as codeEditor from './scripts/ui/editor-manager';
 const [htmlEditor, cssEditor, jsEditor] = codeEditor.init(CodeMirror);
 
-import * as configService from './scripts/services/config-service';
-configService.setAppMode('production');
+import * as configManager from './scripts/utils/config-manager';
+configManager.setAppMode('production');
 
-import * as uiService from './scripts/services/ui-service';
-import * as session from './scripts/session';
-import * as adminService from './scripts/services/admin-service';
+import * as uiManager from './scripts/ui/ui-manager';
+import * as sessionManager from './scripts/utils/session-manager';
+import * as authService from './scripts/services/auth-service';
 import './styles/style.scss';
 
 
@@ -32,7 +32,7 @@ import './styles/style.scss';
 /////////////////////////////////////////
 // declarations
 /////////////////////////////////////////
-const previousSessionData = session.restore();
+const previousSessionData = sessionManager.restore();
 const pageData = {
     htmlCode: previousSessionData.htmlCode ?? '',
     cssCode: previousSessionData.cssCode ?? '',
@@ -44,14 +44,14 @@ const pageData = {
 /////////////////////////////////////////
 // main()
 /////////////////////////////////////////
-uiService.checkMediaQuery()
-uiService.handleTabsClick();
-uiService.handleResizer();
+uiManager.checkMediaQuery()
+uiManager.handleTabsClick();
+uiManager.handleResizer();
 
-adminService.authorizeApp(() => {
+authService.authorizeApp(() => {
     console.log('APP AUTHORIZED');
-    uiService.restorePreviousViewState(pageData, {htmlEditor, cssEditor, jsEditor});
-    uiService.listenEditorsChanges(pageData, {htmlEditor, cssEditor, jsEditor});
+    uiManager.restorePreviousViewState(pageData, {htmlEditor, cssEditor, jsEditor});
+    uiManager.listenEditorsChanges(pageData, {htmlEditor, cssEditor, jsEditor});
 });
 
 

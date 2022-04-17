@@ -1,16 +1,16 @@
-import * as configService from './config-service';
+import * as configManager from '../utils/config-manager';
 
 
 export function authorizeApp(onSuccess, onFailed) {
     let url = 'http://localhost:3000/auth/authorize-app';
-    if (configService.isProductionMode()) {
+    if (configManager.isProductionMode()) {
         url = 'https://noppytinto-web-playground.herokuapp.com/auth/authorize-app';
     }
 
     const request = new Request(url, {
         method: 'GET',
         headers: new Headers({
-            'Authorization': `Bearer ${configService.getAppToken()}`,
+            'Authorization': `Bearer ${configManager.getAppToken()}`,
         }),
         credentials: 'include',
     });

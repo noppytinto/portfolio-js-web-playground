@@ -1,7 +1,7 @@
-import * as configService from './services/config-service';
-import * as uiService from './services/ui-service';
-import * as session from './session';
-import { clearMyTimeout } from './misc-utils';
+import * as configManager from '../utils/config-manager';
+import * as uiManager from './ui-manager';
+import * as session from '../utils/session-manager';
+import { clearMyTimeout } from '../utils/misc-utils';
 
 /////////////////////////////////////////
 // declarations
@@ -11,7 +11,7 @@ const DEBOUNCE_DELAY = 2000;
 
 export function generatePage(pageData) {
     console.log('generating page...');
-    uiService.showLoadingSpinner();
+    uiManager.showLoadingSpinner();
 
     //
     clearMyTimeout(timeout);
@@ -28,8 +28,8 @@ export function requestPage(pageData) {
     fetch(request)
         .then((res) => res.blob())
         .then((data) => {
-            uiService.updateFrame(data);
-            uiService.hideLoadingSpinner();
+            uiManager.updateFrame(data);
+            uiManager.hideLoadingSpinner();
             session.save(pageData);
         })
         .catch((err) => {
@@ -41,7 +41,7 @@ export function buildRequest(pageData) {
     const payload = buildPayload(pageData);
 
     let url = 'http://localhost:3000/page/generate';
-    if (configService.isProductionMode()) {
+    if (configManager.isProductionMode()) {
         url = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
     }
 

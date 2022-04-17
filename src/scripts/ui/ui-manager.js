@@ -1,5 +1,4 @@
-import * as pageGenerator from "../page-generator";
-import * as configService from "./config-service";
+import * as pageGenerator from "./page-generator";
 
 const tabHtml = document.querySelector('.input__tab-button--html');
 const tabCss = document.querySelector('.input__tab-button--css');
