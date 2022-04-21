@@ -4,7 +4,7 @@ let appMode = DEVELOPMENT;
 
 
 function getAppToken() {
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImFFUWs1TzVLTnhVMXhNUXRPV3REWTNRRXN4eWtzdkZqZmxsTHl3ckVzV0tZOGpvMnczIiwiaWF0IjoxNjQ5ODYyMDQ2LCJleHAiOjE2ODE0MTk2NDZ9.IX1T47VrkCbHPWywrdjKUbv4JaCGNZ7aDtktXhwof_4';
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IlJPckdQdHpSMmJqTk5keVVteDY2b1dndENjZVE3Y2VzYlFMY2Jzb3hyZzlHdDNpd1lCIiwiaWF0IjoxNjUwNTM1MDk5LCJleHAiOjE2NTA1MzU5OTl9.rbaEqIgEuJtq5aWMWHmZvX2s5ppXnpmkKZzAN6WdsLU';
 }
 
 function isDevelopmentMode() {
