@@ -164,7 +164,7 @@ export function showElement(element) {
 export function handleInputMenu() {
     // TODO
     inputMenuButton.addEventListener('click', (ev) => {
-        console.log('input menu clicked');
+        // console.log('input menu clicked');
         inputMenuOptions.classList.toggle('hidden');
     })
 }
