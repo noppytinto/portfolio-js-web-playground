@@ -70,15 +70,16 @@ export function handleResizer() {
 
 
 export function checkMediaQuery() {
-    mediaQuery = window.matchMedia("screen and (max-width: 750px)");
+    const query = 'screen and (max-width: 750px)';
+
+    mediaQuery = window.matchMedia(query);
+    isHandlerDragging = false;
     if (mediaQuery.matches) { // If media query matches
-        isHandlerDragging = false;
         inputSection.style.width = 'auto';
         inputSection.style.height = '40%';
         document.removeEventListener('mousemove', resizeHorizontally);
         document.addEventListener('mousemove', resizeVertically);
     } else {
-        isHandlerDragging = false;
         inputSection.style.width = '40%';
         inputSection.style.height = 'auto';
         document.removeEventListener('mousemove', resizeVertically);
@@ -86,11 +87,12 @@ export function checkMediaQuery() {
     }
 }
 
-export function restorePreviousViewState(pageData, {
-    htmlEditor,
-    cssEditor,
-    jsEditor
-}) {
+export function restorePreviousEditorState(pageData, {
+        htmlEditor,
+        cssEditor,
+        jsEditor
+    }) {
+
     if (pageData.htmlCode !== '') {
         htmlEditor.setValue(pageData.htmlCode);
         pageGenerator.generatePage(pageData);

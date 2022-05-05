@@ -15,7 +15,7 @@ export function destroy() {
     window.localStorage.removeItem('jsCode');    
 }
 
-export function restore() {
+export function restoreEditorData() {
     const bundle = {};
     bundle.htmlCode = localStorage.getItem('htmlCode') ?? '';
     bundle.cssCode = localStorage.getItem('cssCode') ?? '';

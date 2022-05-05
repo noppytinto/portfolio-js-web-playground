@@ -1,3 +1,6 @@
+/////////////////////////////
+// init codemirror
+/////////////////////////////
 import 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/display/autorefresh';
@@ -8,12 +11,16 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/css/css';
 import CodeMirror from 'codemirror';
-import * as codeEditor from './scripts/ui/editor-manager';
-const [htmlEditor, cssEditor, jsEditor] = codeEditor.init(CodeMirror);
 
+
+/////////////////////////////
+// init stuff
+/////////////////////////////
+import * as codeEditor from './scripts/ui/editor-manager';
+const editors = codeEditor.init(CodeMirror);
 import * as configManager from './scripts/utils/config-manager';
-configManager.setAppMode('development');
-// configManager.setAppMode('production');
+// configManager.setAppMode('development');
+configManager.setAppMode('production');
 
 import * as uiManager from './scripts/ui/ui-manager';
 import * as sessionManager from './scripts/utils/session-manager';
@@ -33,13 +40,7 @@ import './styles/style.scss';
 /////////////////////////////////////////
 // declarations
 /////////////////////////////////////////
-const previousSessionData = sessionManager.restore();
-const pageData = {
-    htmlCode: previousSessionData.htmlCode ?? '',
-    cssCode: previousSessionData.cssCode ?? '',
-    jsCode: previousSessionData.jsCode ?? '',
-}
-
+const previousEditorData = sessionManager.restoreEditorData();
 
 
 /////////////////////////////////////////
@@ -50,11 +51,14 @@ uiManager.handleTabsClick();
 uiManager.handleResizer();
 uiManager.handleInputMenu();
 
-authService.authorizeApp(() => {
+authService.authorizeApp(
+    () => {
     console.log('APP AUTHORIZED');
-    uiManager.restorePreviousViewState(pageData, {htmlEditor, cssEditor, jsEditor});
-    uiManager.listenEditorsChanges(pageData, {htmlEditor, cssEditor, jsEditor});
-});
+    uiManager.restorePreviousEditorState(previousEditorData, editors);
+    uiManager.listenEditorsChanges(previousEditorData, editors);}, 
+
+    (err) => console.log('CANNOT AUTHORIZE APP:', err)
+);
 
 
 

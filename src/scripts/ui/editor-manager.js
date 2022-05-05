@@ -29,5 +29,5 @@ export function init(CodeMirror) {
     const cssEditor = CodeMirror.fromTextArea(cssTextarea, cssConfig);
     const jsEditor = CodeMirror.fromTextArea(jsTextarea, jsConfig);
 
-    return [htmlEditor, cssEditor, jsEditor];
+    return {htmlEditor, cssEditor, jsEditor};
 }
