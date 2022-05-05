@@ -1,4 +1,7 @@
 import * as pageGenerator from "./page-generator";
+import * as editorManager from "./editor-manager";
+import * as sessionManager from "../utils/session-manager";
+
 
 const tabHtml = document.querySelector('.input__tab-button--html');
 const tabCss = document.querySelector('.input__tab-button--css');
@@ -12,8 +15,9 @@ const editorCssView = document.querySelector('.input__editor-css');
 const editorJsView = document.querySelector('.input__editor-js');
 const loadingSpinner = document.querySelector('.loading');
 const outputIframe = document.querySelector('#output__canvas');
-const inputMenuButton = document.querySelector('.input__menu-button');
-const inputMenuOptions = document.querySelector('.input__menu-options-container');
+const inputMenuOptions = document.querySelector('.input__menu-options');
+const inputMenuButtonExpand = document.querySelector('.input__menu-button');
+const inputMenuButtonReset = document.querySelector('.input__menu-option-item--reset');
 
 let isHandlerDragging = false;
 let mediaQuery;
@@ -165,9 +169,17 @@ export function showElement(element) {
 
 export function handleInputMenu() {
     // TODO
-    inputMenuButton.addEventListener('click', (ev) => {
+    inputMenuButtonExpand.addEventListener('click', (ev) => {
         // console.log('input menu clicked');
         inputMenuOptions.classList.toggle('hidden');
+    })
+
+    inputMenuButtonReset.addEventListener('click', (ev) => {
+        // console.log('input menu clicked');
+        inputMenuOptions.classList.toggle('hidden');
+        sessionManager.destroy();
+        editorManager.resetEditors();
+        updateFrame('');
     })
 }
 

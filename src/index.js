@@ -19,8 +19,8 @@ import CodeMirror from 'codemirror';
 import * as codeEditor from './scripts/ui/editor-manager';
 const editors = codeEditor.init(CodeMirror);
 import * as configManager from './scripts/utils/config-manager';
-// configManager.setAppMode('development');
 configManager.setAppMode('production');
+// configManager.setAppMode('development');
 
 import * as uiManager from './scripts/ui/ui-manager';
 import * as sessionManager from './scripts/utils/session-manager';

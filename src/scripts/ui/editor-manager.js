@@ -2,6 +2,9 @@ const htmlTextarea = document.querySelector('#editor-html');
 const cssTextarea = document.querySelector('#editor-css');
 const jsTextarea = document.querySelector('#editor-js');
 
+//
+let htmlEditor, cssEditor, jsEditor;
+
 export function init(CodeMirror) {
     const htmlConfig = {
         mode: "htmlmixed",
@@ -25,9 +28,15 @@ export function init(CodeMirror) {
         autoCloseBrackets: true,
         autoCloseTags: true,
     };
-    const htmlEditor = CodeMirror.fromTextArea(htmlTextarea, htmlConfig);
-    const cssEditor = CodeMirror.fromTextArea(cssTextarea, cssConfig);
-    const jsEditor = CodeMirror.fromTextArea(jsTextarea, jsConfig);
+    htmlEditor = CodeMirror.fromTextArea(htmlTextarea, htmlConfig);
+    cssEditor = CodeMirror.fromTextArea(cssTextarea, cssConfig);
+    jsEditor = CodeMirror.fromTextArea(jsTextarea, jsConfig);
 
     return {htmlEditor, cssEditor, jsEditor};
+}
+
+export function resetEditors() {
+    htmlEditor.setValue('');
+    cssEditor.setValue('');
+    jsEditor.setValue('');
 }
