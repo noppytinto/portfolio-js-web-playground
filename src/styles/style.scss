@@ -1,6 +1,6 @@
 @use "./partials/reset";
 @use "./partials/base";
-@use "./partials/main";
+@use "./partials/main/all" as main;
 
 //
 @use "./partials/utils";

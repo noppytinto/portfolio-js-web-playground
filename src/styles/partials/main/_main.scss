@@ -1,0 +1,21 @@
+@use "../variables" as v;
+
+
+//////////////////////////////////////
+// main
+//////////////////////////////////////
+.main {
+  height: 100%;
+  
+  //
+  display: flex;
+  justify-content: space-between;
+  gap: .2em;
+  
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .main {
+    flex-direction: column;
+  }
+}

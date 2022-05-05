@@ -13,8 +13,16 @@
 <body>
 
 <main class="main">
+  
+  <!--//////////////////////////////-->
+  <!--// INPUT SECTION -->
+  <!--//////////////////////////////-->
   <section class="input">
     <div class="input__tabs-container">
+
+      <!--//////////////////////////////-->
+      <!--// INPUT SECTION - tabs -->
+      <!--//////////////////////////////-->
       <ul class="input__tabs">
         <li class="input__tabs-item">
           <button type="button"
@@ -30,6 +38,9 @@
         </li>
       </ul>
 
+      <!--//////////////////////////////-->
+      <!--// INPUT SECTION - menu -->
+      <!--//////////////////////////////-->
       <div class="input__menu">
         <div class="input__menu-header">
           <button class="input__menu-button">
@@ -47,21 +58,21 @@
     </div>
 
 
-    <div class="input__editors-container">
+    <div class="input__editor-container">
 
-      <div class="input__section input__section-html">
+      <div class="input__editor input__editor-html">
       <textarea name="htmlcode"
                 id="editor-html"
                 class="editor hidden"></textarea>
       </div>
 
-      <div class="input__section input__section-css hidden">
+      <div class="input__editor input__editor-css hidden">
       <textarea name="csscode"
                 id="editor-css"
                 class="editor hidden"></textarea>
       </div>
 
-      <div class="input__section input__section-js hidden">
+      <div class="input__editor input__editor-js hidden">
       <textarea name="jscode"
                 id="editor-js"
                 class="editor hidden"></textarea>
@@ -70,10 +81,18 @@
 
   </section>
 
+
+  <!--//////////////////////////////-->
+  <!--// RESIZER -->
+  <!--//////////////////////////////-->
   <div class="resizer-container">
     <span class="resizer resizer--vertical">&nbsp;</span>
   </div>
 
+
+  <!--//////////////////////////////-->
+  <!--// OUTPUT SECTION-->
+  <!--//////////////////////////////-->
   <section class="output">
     <iframe sandbox="allow-scripts"
             title="output canvas"

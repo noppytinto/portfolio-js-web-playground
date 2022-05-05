@@ -2,9 +2,11 @@ import * as configManager from '../utils/config-manager';
 import * as uiManager from './ui-manager';
 import * as session from '../utils/session-manager';
 import { clearMyTimeout } from '../utils/misc-utils';
+import * as authService from '../services/auth-service';
+
 
 /////////////////////////////////////////
-// declarations
+// DECLARATIONS
 /////////////////////////////////////////
 let timeout;
 const DEBOUNCE_DELAY = 2000;
@@ -40,17 +42,14 @@ export function requestPage(pageData) {
 export function buildRequest(pageData) {
     const payload = buildPayload(pageData);
 
-    let url = 'http://localhost:3000/page/generate';
-    if (configManager.isProductionMode()) {
-        url = 'https://noppytinto-web-playground.herokuapp.com/page/generate';
-    }
+    const url = configManager.getUrlPageGenerator();
 
     const request = new Request(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+            'Authorization': `Bearer ${authService.getToken()}`
         }),
         credentials: 'include',
     });

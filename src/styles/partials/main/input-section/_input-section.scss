@@ -1,0 +1,23 @@
+@use "../../variables" as v;
+
+.input {
+  width: 40%;
+  overflow: hidden;
+  
+  //
+  border-style: solid;
+  border-radius: .2em;
+  border-width: 1px;
+  border-color: #c0c0c0;
+  
+  //
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: v.$breakpoint--default) {
+  .input {
+    width: auto;
+    height: 40%;
+  }
+}
