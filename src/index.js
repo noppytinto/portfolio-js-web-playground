@@ -46,10 +46,7 @@ const previousEditorData = sessionManager.restoreEditorData();
 /////////////////////////////////////////
 // main()
 /////////////////////////////////////////
-uiManager.checkMediaQuery()
-uiManager.handleTabsClick();
-uiManager.handleResizer();
-uiManager.handleInputMenu();
+uiManager.initUI();
 
 authService.authorizeApp(
     () => {

@@ -30,7 +30,7 @@ export function generatePage(htmlCode, cssCode, jsCode) {
         if (htmlBlobPage) {
             uiManager.updateFrame(htmlBlobPage);
             uiManager.hideLoadingSpinner();
-            session.save({htmlCode, cssCode, jsCode});
+            session.saveEditorData(htmlCode, cssCode, jsCode);
         }
 
     }, DEBOUNCE_DELAY)

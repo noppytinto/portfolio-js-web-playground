@@ -1,16 +1,15 @@
 @use "../../variables" as v;
 
 .output {
-  flex-grow: 1;
   flex-shrink: 1;
+  flex-grow: 1;
   position: relative;
   
   overflow: clip;
   //
   border-style: solid;
-  border-radius: .2em;
   border-width: 1px;
-  border-color: #727272;
+  border-color: v.$color--border;
   
   //
   display: flex;
@@ -18,11 +17,11 @@
   align-items: stretch;
 }
 
-@media screen and (max-width: v.$breakpoint--default) {
-  .output {
+// @media screen and (max-width: v.$breakpoint--default) {
+//   .output {
   
-  }
-}
+//   }
+// }
 
 #output__canvas {
   position: absolute;

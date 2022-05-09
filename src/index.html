@@ -14,6 +14,7 @@
 
 <main class="main">
   
+  
   <!--//////////////////////////////-->
   <!--// INPUT SECTION -->
   <!--//////////////////////////////-->
@@ -26,15 +27,19 @@
       <ul class="input__tabs">
         <li class="input__tabs-item">
           <button type="button"
-                  class="input__tab-button input__tab-button--html  input__tab-button--html--active">HTML(body)</button>
+                  class="input__tab-button input__tab-button--properties input__tab-button--properties--active">Properties</button>
         </li>
         <li class="input__tabs-item">
           <button type="button"
-                  class="input__tab-button input__tab-button--css">CSS</button>
+                  class="input__tab-button input__tab-button--html">html(body)</button>
         </li>
         <li class="input__tabs-item">
           <button type="button"
-                  class="input__tab-button input__tab-button--js">JAVASCRIPT</button>
+                  class="input__tab-button input__tab-button--css">css</button>
+        </li>
+        <li class="input__tabs-item">
+          <button type="button"
+                  class="input__tab-button input__tab-button--js">js</button>
         </li>
       </ul>
 
@@ -57,25 +62,83 @@
 
     </div>
 
-
+    <!--//////////////////////////////-->
+    <!--// INPUT SECTION - editors -->
+    <!--//////////////////////////////-->
     <div class="input__editor-container">
 
-      <div class="input__editor input__editor-html">
-      <textarea name="htmlcode"
-                id="editor-html"
-                class="editor hidden"></textarea>
+      <div class="input__editor input__editor-properties-panel">
+        <section class="input__editor-elements">
+          <h2 class="input__editor-properties-title">Elements</h2>
+
+          <ul class="input__editor-elements-list" data-level="0">
+  
+            <li class="input__editor-elements-item">
+              <p class="input__editor-element-name">p.p</p>
+  
+              <ul class="input__editor-elements-list"  data-level="1">
+  
+                <li class="input__editor-elements-item">
+                  <p class="input__editor-element-name">div</p>
+                </li>
+                <li class="input__editor-elements-item">
+                  <p class="input__editor-element-name">span</p>
+                </li>
+              </ul>
+            </li>
+
+            <li class="input__editor-elements-item">
+              <p class="input__editor-element-name">div</p>
+  
+              <ul class="input__editor-elements-list"  data-level="1">
+  
+                <li class="input__editor-elements-item">
+                  <p class="input__editor-element-name">div</p>
+                </li>
+                <li class="input__editor-elements-item">
+                  <p class="input__editor-element-name">span</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="input__editor-properties">
+          <h2 class="input__editor-properties-title">Properties</h2>
+
+          <ul class="input__editor-properties-list">
+            <li class="input__editor-cssrule">
+              <p class="input__editor-rulename">color</p>
+              <p class="input__editor-rulevalue">red</p>
+            </li>
+            <li class="input__editor-cssrule">
+              <p class="input__editor-rulename">color</p>
+              <p class="input__editor-rulevalue">red</p>
+            </li>
+            <li class="input__editor-cssrule">
+              <p class="input__editor-rulename">color</p>
+              <p class="input__editor-rulevalue">red</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="input__editor input__editor-html hidden">
+        <textarea name="htmlcode"
+                  id="editor-html"
+                  class="editor hidden"></textarea>
       </div>
 
       <div class="input__editor input__editor-css hidden">
-      <textarea name="csscode"
-                id="editor-css"
-                class="editor hidden"></textarea>
+        <textarea name="csscode"
+                  id="editor-css"
+                  class="editor hidden"></textarea>
       </div>
 
       <div class="input__editor input__editor-js hidden">
-      <textarea name="jscode"
-                id="editor-js"
-                class="editor hidden"></textarea>
+        <textarea name="jscode"
+                  id="editor-js"
+                  class="editor hidden"></textarea>
       </div>
     </div>
 
@@ -94,12 +157,12 @@
   <!--// OUTPUT SECTION-->
   <!--//////////////////////////////-->
   <section class="output">
-    <iframe sandbox="allow-scripts"
+    <iframe sandbox="allow-scripts allow-same-origin"
             title="output canvas"
             id="output__canvas"
             src="">page not found!</iframe>
     <div class="resizer-helper hidden"></div>
-  <div class="loading hidden"></div>
+    <div class="loading hidden"></div>
 
   </section>
 

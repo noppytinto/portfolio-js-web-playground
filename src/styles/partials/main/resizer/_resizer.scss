@@ -2,32 +2,32 @@
 
 
 .resizer-container {
-  color: rgb(157, 157, 157);
-  width: 7px;
-  
+  color: rgb(157, 157, 157); 
+
+  height: 7px;
   //
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-@media screen and (max-width: v.$breakpoint--default) {
-  .resizer-container {
-    width: auto;
-    height: 7px;
+// @media screen and (max-width: v.$breakpoint--default) {
+//   .resizer-container {
+//     width: auto;
+//     height: 7px;
     
-    //
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-}
+//     //
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// }
 
 .resizer {
-  width: 7px;
-  height: 10%;
+  width: 10%;
+  height: 7px;
   
   //
   border-color: v.$color--resizer-handle;
@@ -38,19 +38,19 @@
 }
 
 .resizer:hover {
-  cursor: ew-resize;
+  cursor: ns-resize;
 }
 
-@media screen and (max-width: v.$breakpoint--default) {
-  .resizer {
-    width: 10%;
-    height: 7px;
-  }
+// @media screen and (max-width: v.$breakpoint--default) {
+//   .resizer {
+//     width: 10%;
+//     height: 7px;
+//   }
   
-  .resizer:hover {
-    cursor: ns-resize;
-  }
-}
+//   .resizer:hover {
+//     cursor: ns-resize;
+//   }
+// }
 
 .test {
   overflow: auto;

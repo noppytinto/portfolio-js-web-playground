@@ -3,13 +3,13 @@ const CSS_CODE_KEY = 'cssCode';
 const JS_CODE_KEY = 'jsCode';
 
 
-export function save(bundle) {
-    window.localStorage.setItem(HTML_CODE_KEY, bundle.htmlCode);
-    window.localStorage.setItem(CSS_CODE_KEY, bundle.cssCode);
-    window.localStorage.setItem(JS_CODE_KEY, bundle.jsCode);
+export function saveEditorData(htmlCode, cssCode, jsCode) {
+    window.localStorage.setItem(HTML_CODE_KEY, htmlCode);
+    window.localStorage.setItem(CSS_CODE_KEY, cssCode);
+    window.localStorage.setItem(JS_CODE_KEY, jsCode);
 }
 
-export function destroy() {
+export function destroyEditorData() {
     window.localStorage.removeItem(HTML_CODE_KEY);
     window.localStorage.removeItem(CSS_CODE_KEY);
     window.localStorage.removeItem(JS_CODE_KEY);    

@@ -1,3 +1,6 @@
+// PBTVM
+
+$color--tabs-background: #dadada;
 
 //////////////////////////////////////
 // input - tabs
@@ -9,17 +12,109 @@
   flex-shrink: 1;
 }
 
+.input__tabs {
+  // position: relative;
+
+  overflow: auto;
+  
+  //
+  list-style: none;
+  z-index: 10;
+  background-color: $color--tabs-background;
+  box-shadow: 0 0px 7px 0px rgba(99, 99, 99, 0.5);
+  
+  //
+  display: flex;
+  justify-content: flex-start;
+}
+
+.input__tab-button {
+  border-color: #1c87c9;
+  border-radius: 0;
+  border-width: 0;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #bbbbbb;
+  color: #8d8d8d;
+  padding: 1em 1.5em;
+  
+  transition: background-color .2s,
+  transform .1s;
+
+  background-color: $color--tabs-background;
+}
+
+.input__tab-button:hover {
+  cursor: pointer;
+}
+
+.input__tab-button:active {
+  transform: scale(0.9);
+}
+
+.input__tab-button--properties:hover {
+  background-color: #e1f4ff;
+  color: #00517f;
+}
+
+.input__tab-button--html:hover {
+  background-color: #ff9c83;
+  color: #6e4237;
+}
+
+.input__tab-button--css:hover {
+  background-color: #83c3ff;
+  color: #426585;
+}
+
+.input__tab-button--js:hover {
+  background-color: #fff783;
+  color: #77743e;
+}
+
+.input__tab-button--properties--active {
+  background-color: #e1f4ff;
+  color: #00517f;
+  font-weight: bold;
+}
+
+.input__tab-button--html--active {
+  background-color: #ff9c83;
+  color: #6e4237;
+  font-weight: bold;
+}
+
+.input__tab-button--css--active {
+  background-color: #83c3ff;
+  color: #426585;
+  font-weight: bold;
+}
+
+.input__tab-button--js--active {
+  background-color: #fff783;
+  color: #77743e;
+  font-weight: bold;
+}
+
+
+
+
+//////////////////////////////////////
+// input - tabs - menu
+//////////////////////////////////////
 .input__menu {
   // height: auto;
   z-index: 10;
   position: absolute;
   right: 0;
   top: 0;
+  bottom: 0;
   
   // transform: translateY(-50%);
 }
 
 .input__menu-header {
+  height: 100%;
   display: flex;
   align-content: center;
   justify-content: flex-end;
@@ -36,11 +131,11 @@
   border-color: transparent;
   border-radius: 0.2em;
 
-  background-color: #E1E2E2;
+  background-color: $color--tabs-background;
 }
 
 .input__menu-button:hover {
-  background-color: #d0d0d0;
+  background-color: #b9b9b9;
   cursor: pointer;
 }
 
@@ -83,87 +178,3 @@
   color: rgba(0,0,0,1);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.input__tabs {
-  // position: relative;
-  
-  //
-  list-style: none;
-  z-index: 10;
-  background-color: #e2e2e2;
-  box-shadow: 0 0px 7px 0px rgba(99, 99, 99, 0.5);
-  
-  //
-  display: flex;
-  justify-content: flex-start;
-}
-
-.input__tab-button {
-  border-color: #1c87c9;
-  border-radius: 0;
-  border-width: 0;
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-right-color: #e3e3e3;
-  color: #8d8d8d;
-  padding: .5em 1.5em;
-  
-  transition: background-color .2s,
-  transform .1s;
-}
-
-.input__tab-button:hover {
-  cursor: pointer;
-}
-
-.input__tab-button:active {
-  transform: scale(0.9);
-}
-
-.input__tab-button--html--active {
-  font-weight: bold;
-  background-color: #ff9c83;
-}
-
-.input__tab-button--html:hover {
-  background-color: #ff9c83;
-  color: #6e4237;
-}
-
-.input__tab-button--css:hover {
-  background-color: #83c3ff;
-  color: #426585;
-}
-
-.input__tab-button--js:hover {
-  background-color: #fff783;
-  color: #77743e;
-}
-
-.input__tab-button--html--active {
-  background-color: #ff9c83;
-  color: #6e4237;
-  font-weight: bold;
-}
-
-.input__tab-button--css--active {
-  background-color: #83c3ff;
-  color: #426585;
-  font-weight: bold;
-}
-
-.input__tab-button--js--active {
-  background-color: #fff783;
-  color: #77743e;
-  font-weight: bold;
-}

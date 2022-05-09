@@ -3,6 +3,7 @@ import * as editorManager from "./editor-manager";
 import * as sessionManager from "../utils/session-manager";
 
 
+const tabProperties = document.querySelector('.input__tab-button--properties');
 const tabHtml = document.querySelector('.input__tab-button--html');
 const tabCss = document.querySelector('.input__tab-button--css');
 const tabJs = document.querySelector('.input__tab-button--js');
@@ -10,6 +11,7 @@ const wrapper = document.querySelector('.main');
 const resizerHelper = document.querySelector('.resizer-helper');
 const inputSection = document.querySelector('.input');
 const resizerVertical = document.querySelector('.resizer--vertical');
+const elementsPanel = document.querySelector('.input__editor-properties-panel');
 const editorHtmlView = document.querySelector('.input__editor-html');
 const editorCssView = document.querySelector('.input__editor-css');
 const editorJsView = document.querySelector('.input__editor-js');
@@ -26,65 +28,99 @@ let mediaQuery;
 //////////////////////////////////////////
 // PUBLIC FUNCTIONS
 //////////////////////////////////////////
-export function handleTabsClick() {
+export function initUI() {
+    // checkMediaQuery()
+    handleTabsClick();
+    handleResizer();
+    handleInputMenu();
+}
+
+
+function handleTabsClick() {
+    tabProperties.addEventListener('click', () => {
+        activateTab(tabProperties, 'properties');
+        deactivateTab(tabHtml, 'html');
+        deactivateTab(tabCss, 'css');
+        deactivateTab(tabJs, 'js');
+
+        //
+        showElement(elementsPanel);
+        hideElement(editorHtmlView);
+        hideElement(editorCssView);
+        hideElement(editorJsView);
+    });
+
     tabHtml.addEventListener('click', () => {
+        deactivateTab(tabProperties, 'properties');
         activateTab(tabHtml, 'html');
         deactivateTab(tabCss, 'css');
         deactivateTab(tabJs, 'js');
 
         //
+        hideElement(elementsPanel);
         showElement(editorHtmlView);
         hideElement(editorCssView);
         hideElement(editorJsView);
     });
 
     tabCss.addEventListener('click', () => {
-        activateTab(tabCss, 'css');
+        deactivateTab(tabProperties, 'properties');
         deactivateTab(tabHtml, 'html');
+        activateTab(tabCss, 'css');
         deactivateTab(tabJs, 'js');
 
         //
+        hideElement(elementsPanel);
         hideElement(editorHtmlView);
         showElement(editorCssView);
         hideElement(editorJsView);
     });
 
     tabJs.addEventListener('click', () => {
-        activateTab(tabJs, 'js');
+        deactivateTab(tabProperties, 'properties');
         deactivateTab(tabHtml, 'html');
         deactivateTab(tabCss, 'css');
+        activateTab(tabJs, 'js');
+
 
         //
+        hideElement(elementsPanel);
         hideElement(editorHtmlView);
         hideElement(editorCssView);
         showElement(editorJsView);
     });
 }
 
-export function handleResizer() {
-    resizerVertical.addEventListener('mousedown', enableResize);
+function handleResizer() {
+    isHandlerDragging = false;
+    const defaultPercentage = '50%';
 
+    inputSection.style.width = 'auto';
+    inputSection.style.height = defaultPercentage;
+    document.addEventListener('mousemove', resizeVertically);
+
+    resizerVertical.addEventListener('mousedown', enableResize);
     document.addEventListener('mouseup', disableResize);
 
-    mediaQuery.addEventListener('change', (ev) => {
-        checkMediaQuery(ev);
-    });
+    // mediaQuery.addEventListener('change', (ev) => {
+    //     checkMediaQuery(ev);
+    // });
 }
 
 
 
-export function checkMediaQuery() {
+function checkMediaQuery() {
     const query = 'screen and (max-width: 750px)';
+    const defaultPercentage = '50%';
 
     mediaQuery = window.matchMedia(query);
-    isHandlerDragging = false;
     if (mediaQuery.matches) { // If media query matches
         inputSection.style.width = 'auto';
-        inputSection.style.height = '40%';
+        inputSection.style.height = defaultPercentage;
         document.removeEventListener('mousemove', resizeHorizontally);
         document.addEventListener('mousemove', resizeVertically);
     } else {
-        inputSection.style.width = '40%';
+        inputSection.style.width = defaultPercentage;
         inputSection.style.height = 'auto';
         document.removeEventListener('mousemove', resizeVertically);
         document.addEventListener('mousemove', resizeHorizontally);
@@ -118,6 +154,36 @@ export function restorePreviousEditorState(previousEditorData, {
     }
 }
 
+function getIframeStylesheet(iframe) {
+    // TODO
+    const iframeWindow = iframe.contentWindow;
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeBodyContent = getAllBodyElementsFromIframe(iframe);
+    const computedStyle = iframeWindow.getComputedStyle(iframeBodyContent[0]);
+    const inlineStyle = iframeBodyContent[0].style;
+    const authorStyles = iframeDocument.styleSheets;
+    const propertyName = iframeDocument.styleSheets[0].cssRules[0].style.item(0);
+    const propertyValue = iframeDocument.styleSheets[0].cssRules[0].style.item(0);
+    console.log('IFRAME:', iframeBodyContent);
+}
+
+function getElementCurrentStyle(element) {
+
+}
+
+function getAllBodyElementsFromIframe(iframe) {
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeBodyContent = iframeDocument.getElementById('root').getElementsByTagName('*');
+
+    return iframeBodyContent || [];
+}
+
+function buildElementView(element) {
+    const elementName = element.getAttribute("name");
+
+    document.createElement('li');
+}
+
 export function listenEditorsChanges(previousEditorData, {
     htmlEditor,
     cssEditor,
@@ -131,6 +197,8 @@ export function listenEditorsChanges(previousEditorData, {
         pageGenerator.generatePage(editorContent.htmlCode, 
                                    editorContent.cssCode, 
                                    editorContent.jsCode);
+
+        getIframeStylesheet(outputIframe);
     });
 
     cssEditor.on('changes', function (editor) {
@@ -153,6 +221,23 @@ export function updateFrame(htmlBlobPage) {
 
     const data_url = URL.createObjectURL(htmlBlobPage);
     outputIframe.setAttribute('src', data_url);
+}
+
+export function updateFrame_offline(htmlCode, cssCode, jsCode) {
+    const iframeDocument = outputIframe.contentDocument || outputIframe.contentWindow.document;
+
+    iframeDocument.open();
+    iframeDocument.write(htmlCode);
+    iframeDocument.write("<script>"+ jsCode + "<" + "/script>");
+    iframeDocument.close();
+
+    const oldStyleElement = iframeDocument.querySelector('head').lastElementChild;
+    console.log(oldStyleElement);
+    if (oldStyleElement) iframeDocument.querySelector('head').removeChild(oldStyleElement);
+
+    const newStyleElement = iframeDocument.createElement('style');
+    newStyleElement.textContent = cssCode;
+    iframeDocument.querySelector('head').appendChild(newStyleElement);
 }
 
 // export function updateFrame_offline(htmlCode, cssCode, jsCode) {
@@ -200,7 +285,7 @@ export function showElement(element) {
     element.classList.remove('hidden');
 }
 
-export function handleInputMenu() {
+function handleInputMenu() {
     // TODO
     inputMenuButtonExpand.addEventListener('click', (ev) => {
         // console.log('input menu clicked');
@@ -210,7 +295,7 @@ export function handleInputMenu() {
     inputMenuButtonReset.addEventListener('click', (ev) => {
         // console.log('input menu clicked');
         inputMenuOptions.classList.toggle('hidden');
-        sessionManager.destroy();
+        sessionManager.destroyEditorData();
         editorManager.resetEditors();
         updateFrame('');
     })
