@@ -10,16 +10,17 @@ export function save(bundle) {
 }
 
 export function destroy() {
-    window.localStorage.removeItem('htmlCode');
-    window.localStorage.removeItem('cssCode');
-    window.localStorage.removeItem('jsCode');    
+    window.localStorage.removeItem(HTML_CODE_KEY);
+    window.localStorage.removeItem(CSS_CODE_KEY);
+    window.localStorage.removeItem(JS_CODE_KEY);    
 }
 
 export function restoreEditorData() {
     const bundle = {};
-    bundle.htmlCode = localStorage.getItem('htmlCode') ?? '';
-    bundle.cssCode = localStorage.getItem('cssCode') ?? '';
-    bundle.jsCode = localStorage.getItem('jsCode') ?? '';
+    bundle.htmlCode = localStorage.getItem(HTML_CODE_KEY) ?? '';
+    bundle.cssCode = localStorage.getItem(CSS_CODE_KEY) ?? '';
+    bundle.jsCode = localStorage.getItem(JS_CODE_KEY) ?? '';
+
     return bundle;
 }
 

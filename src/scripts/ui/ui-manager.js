@@ -91,48 +91,87 @@ export function checkMediaQuery() {
     }
 }
 
-export function restorePreviousEditorState(pageData, {
+export function restorePreviousEditorState(previousEditorData, {
         htmlEditor,
         cssEditor,
         jsEditor
     }) {
 
-    if (pageData.htmlCode !== '') {
-        htmlEditor.setValue(pageData.htmlCode);
-        pageGenerator.generatePage(pageData);
+        const htmlCode = previousEditorData.htmlCode;
+        const cssCode = previousEditorData.cssCode;
+        const jsCode = previousEditorData.jsCode;
+
+    if (htmlCode !== '') {
+        htmlEditor.setValue(htmlCode);
+        pageGenerator.generatePage(htmlCode, cssCode, jsCode);
     }
 
-    if (pageData.cssCode !== '') {
-        cssEditor.setValue(pageData.cssCode);
-        pageGenerator.generatePage(pageData);
+    if (cssCode !== '') {
+        cssEditor.setValue(cssCode);
+        pageGenerator.generatePage(htmlCode, cssCode, jsCode);
+
     }
 
-    if (pageData.jsCode !== '') {
-        jsEditor.setValue(pageData.jsCode);
-        pageGenerator.generatePage(pageData);
+    if (jsCode !== '') {
+        jsEditor.setValue(jsCode);
+        pageGenerator.generatePage(htmlCode, cssCode, jsCode);
     }
 }
 
-export function listenEditorsChanges(pageData, {
+export function listenEditorsChanges(previousEditorData, {
     htmlEditor,
     cssEditor,
     jsEditor
 }) {
+
+    const editorContent = previousEditorData;
+
     htmlEditor.on('changes', function (editor) {
-        pageData.htmlCode = editor.doc.getValue();
-        pageGenerator.generatePage(pageData);
+        editorContent.htmlCode = editor.doc.getValue();
+        pageGenerator.generatePage(editorContent.htmlCode, 
+                                   editorContent.cssCode, 
+                                   editorContent.jsCode);
     });
 
     cssEditor.on('changes', function (editor) {
-        pageData.cssCode = editor.doc.getValue();
-        pageGenerator.generatePage(pageData);
+        editorContent.cssCode = editor.doc.getValue();
+        pageGenerator.generatePage(editorContent.htmlCode, 
+                                   editorContent.cssCode, 
+                                   editorContent.jsCode);
     });
 
     jsEditor.on('changes', function (editor) {
-        pageData.jsCode = editor.doc.getValue();
-        pageGenerator.generatePage(pageData);
+        editorContent.jsCode = editor.doc.getValue();
+        pageGenerator.generatePage(editorContent.htmlCode, 
+                                   editorContent.cssCode, 
+                                   editorContent.jsCode);
     });
 }
+
+export function updateFrame(htmlBlobPage) {
+    // console.log('PAGE DATA:', htmlBlobPage);
+
+    const data_url = URL.createObjectURL(htmlBlobPage);
+    outputIframe.setAttribute('src', data_url);
+}
+
+// export function updateFrame_offline(htmlCode, cssCode, jsCode) {
+//     const iframeDocument = outputIframe.contentDocument || outputIframe.contentWindow.document;
+
+//     iframeDocument.open();
+//     iframeDocument.write(htmlCode);
+//     iframeDocument.write("<script>"+ jsCode + "<" + "/script>");
+//     iframeDocument.close();
+
+//     const oldStyleElement = iframeDocument.querySelector('head').lastElementChild;
+//     console.log(oldStyleElement);
+//     if (oldStyleElement) iframeDocument.querySelector('head').removeChild(oldStyleElement);
+
+//     const newStyleElement = iframeDocument.createElement('style');
+//     newStyleElement.textContent = cssCode;
+//     iframeDocument.querySelector('head').appendChild(newStyleElement);
+// }
+
 
 export function showLoadingSpinner() {
     loadingSpinner.classList.remove('hidden');
@@ -142,12 +181,6 @@ export function hideLoadingSpinner() {
     loadingSpinner.classList.add('hidden');
 }
 
-export function updateFrame(pageData) {
-    console.log('PAGE DATA:', pageData);
-
-    const data_url = URL.createObjectURL(pageData);
-    outputIframe.setAttribute('src', data_url);
-}
 
 export function activateTab(tab, tabName) {
     tab.classList.remove(`input__tab-button--${tabName}--active`);

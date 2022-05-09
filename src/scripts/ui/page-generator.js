@@ -11,7 +11,7 @@ import * as authService from '../services/auth-service';
 let timeout;
 const DEBOUNCE_DELAY = 2000;
 
-export function generatePage(pageData) {
+export function generatePage(htmlCode, cssCode, jsCode) {
     console.log('generating page...');
     uiManager.showLoadingSpinner();
 
@@ -19,37 +19,50 @@ export function generatePage(pageData) {
     clearMyTimeout(timeout);
 
     //
-    timeout = setTimeout(() => {
-       requestPage(pageData);
+    timeout = setTimeout(async () => {
+        // TODO
+        // uiManager.updateFrame_offline(htmlCode, cssCode, jsCode);
+        // uiManager.hideLoadingSpinner();
+        // session.save(pageData);
+
+        //
+        const htmlBlobPage = await requestPage(htmlCode, cssCode, jsCode)
+        if (htmlBlobPage) {
+            uiManager.updateFrame(htmlBlobPage);
+            uiManager.hideLoadingSpinner();
+            session.save({htmlCode, cssCode, jsCode});
+        }
+
     }, DEBOUNCE_DELAY)
 }
 
-export function requestPage(pageData) {
-    const request = buildRequest(pageData);
+// PRE-CONDITIONS: htmlCode, cssCode, jsCode are strings
+// POST-CONDITIONS: returns an html page in blob format
+export async function requestPage(htmlCode, cssCode, jsCode) {
+    let htmlBlobPage = null;
 
-    fetch(request)
-        .then((res) => res.blob())
-        .then((data) => {
-            uiManager.updateFrame(data);
-            uiManager.hideLoadingSpinner();
-            session.save(pageData);
-        })
-        .catch((err) => {
-            console.error('PAGE REQUEST ERROR:', err);
-        });
+    try {
+        const request = buildRequest(htmlCode, cssCode, jsCode, 
+                                     configManager.getUrlPageGenerator(), 
+                                     authService.getToken());
+        const res = await fetch(request);
+        htmlBlobPage = await res.blob();
+    } catch(err) {
+        console.error('PAGE REQUEST ERROR:', err);
+    }
+
+    return htmlBlobPage;
 }
 
-export function buildRequest(pageData) {
-    const payload = buildPayload(pageData);
-
-    const url = configManager.getUrlPageGenerator();
+export function buildRequest(htmlCode, cssCode, jsCode, url, token) {
+    const payload = buildPayload(htmlCode, cssCode, jsCode);
 
     const request = new Request(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authService.getToken()}`
+            'Authorization': `Bearer ${token}`
         }),
         credentials: 'include',
     });
@@ -57,11 +70,11 @@ export function buildRequest(pageData) {
     return request;
 }
 
-export function buildPayload(data) {
+export function buildPayload(htmlCode, cssCode, jsCode) {
     const payload = {
-        htmlCode: `${data.htmlCode}`,
-        cssCode: `${data.cssCode}`,
-        jsCode: `${data.jsCode}`
+        htmlCode: `${htmlCode}`,
+        cssCode: `${cssCode}`,
+        jsCode: `${jsCode}`
     }
 
     return payload;

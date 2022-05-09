@@ -20,7 +20,7 @@ import * as codeEditor from './scripts/ui/editor-manager';
 const editors = codeEditor.init(CodeMirror);
 import * as configManager from './scripts/utils/config-manager';
 configManager.setAppMode('production');
-// configManager.setAppMode('development');
+configManager.setAppMode('development');
 
 import * as uiManager from './scripts/ui/ui-manager';
 import * as sessionManager from './scripts/utils/session-manager';
@@ -41,7 +41,7 @@ import './styles/style.scss';
 // declarations
 /////////////////////////////////////////
 const previousEditorData = sessionManager.restoreEditorData();
-
+// console.log('previous editor data', previousEditorData);
 
 /////////////////////////////////////////
 // main()
