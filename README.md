@@ -33,3 +33,9 @@ The communication between front and backend takes place through Rest API.
 - JWT token
 - Rest API
 - Codemirror
+
+<br/>
+
+## Sequence Diagram (frontend-backend):
+
+![sequence diagram frontend-backend](./md-assets/sequence-diagram.png)
