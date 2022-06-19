@@ -1,15 +1,28 @@
-# 🚀 Welcome to your new awesome project!
+# Web Playground (codepen like app)
 
-This project has been created using **webpack-cli**, you can now run
+### Build Status:  [![Netlify Status](https://api.netlify.com/api/v1/badges/0c4011d3-557c-4ca4-aa80-f442e9f1d530/deploy-status)](https://app.netlify.com/sites/noppytinto-web-playground/deploys)
 
-```
-npm run build
-```
+### Link: [noppytinto-web-playground.netlify.app/](https://noppytinto-web-playground.netlify.app)
 
-or
+<br/>
 
-```
-yarn build
-```
+## Description:
 
-to bundle your application
+Web Playground is a Codepen like website, that allow users to write HTML/CSS/JS code and see the result into the browser.
+
+<br/>
+
+## Stack:
+
+- HTML, CSS (SASS)
+- Javascript
+- Node
+- Express
+- Postgres (session)
+
+<br/>
+
+## Technologies:
+
+- Webpack
+- Netlify
