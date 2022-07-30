@@ -18,6 +18,7 @@ const outputIframe = document.querySelector('#output__canvas');
 const inputMenuOptions = document.querySelector('.input__menu-options');
 const inputMenuButtonExpand = document.querySelector('.input__menu-button');
 const inputMenuButtonReset = document.querySelector('.input__menu-option-item--reset');
+const runButton = document.querySelector('.input__run-btn');
 
 let isHandlerDragging = false;
 let mediaQuery;
@@ -70,8 +71,6 @@ export function handleResizer() {
         checkMediaQuery(ev);
     });
 }
-
-
 
 export function checkMediaQuery() {
     const query = 'screen and (max-width: 750px)';
@@ -182,6 +181,21 @@ export function handleInputMenu() {
         updateFrame('');
     })
 }
+
+export function listenOnClickRun(pageData, {
+    htmlEditor,
+    cssEditor,
+    jsEditor
+}) {
+    runButton.addEventListener('click', (ev) => {
+        console.log('clicking run button');
+        pageData.htmlCode = htmlEditor.doc.getValue();
+        pageData.cssCode = cssEditor.doc.getValue();
+        pageData.cssCode = jsEditor.doc.getValue();
+        pageGenerator.generatePage(pageData);
+    })
+}
+
 
 //////////////////////////////////////////
 // PRIVATE FUNCTIONS

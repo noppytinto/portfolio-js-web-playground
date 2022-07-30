@@ -28,15 +28,6 @@ import * as authService from './scripts/services/auth-service';
 import './styles/style.scss';
 
 
-
-/////////////////////////////////////////
-// dom elements
-/////////////////////////////////////////
-// const outputSection = document.querySelector('.output');
-// const iframe = document.querySelector('#output__canvas');
-
-
-
 /////////////////////////////////////////
 // declarations
 /////////////////////////////////////////
@@ -55,11 +46,11 @@ authService.authorizeApp(
     () => {
     console.log('APP AUTHORIZED');
     uiManager.restorePreviousEditorState(previousEditorData, editors);
-    uiManager.listenEditorsChanges(previousEditorData, editors);}, 
-
-    (err) => console.log('CANNOT AUTHORIZE APP:', err)
+    uiManager.listenEditorsChanges(previousEditorData, editors);
+    uiManager.listenOnClickRun(previousEditorData, editors);
+    },
+  (err) => console.log('CANNOT AUTHORIZE APP:', err)
 );
-
 
 
 /////////////////////////////////////////

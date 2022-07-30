@@ -23,6 +23,21 @@
   display: flex;
   align-content: center;
   justify-content: flex-end;
+  gap: 1em;
+}
+
+.input__run-btn {
+  padding: .3em 1em;
+  background-color: rgba(#00bb00, .7);
+  color: #002600;
+  border-radius: .5em;
+  border-color: #009f00;
+  border-style: solid;
+  
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .input__menu-button {
