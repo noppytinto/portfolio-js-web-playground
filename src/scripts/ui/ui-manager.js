@@ -188,10 +188,9 @@ export function listenOnClickRun(pageData, {
     jsEditor
 }) {
     runButton.addEventListener('click', (ev) => {
-        console.log('clicking run button');
         pageData.htmlCode = htmlEditor.doc.getValue();
         pageData.cssCode = cssEditor.doc.getValue();
-        pageData.cssCode = jsEditor.doc.getValue();
+        pageData.jsCode = jsEditor.doc.getValue();
         pageGenerator.generatePage(pageData);
     })
 }
